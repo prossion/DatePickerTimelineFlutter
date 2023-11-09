@@ -40,7 +40,7 @@ class DateWidget extends StatelessWidget {
             height: 67,
             margin: const EdgeInsets.all(2.0),
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              borderRadius: const BorderRadius.all(Radius.circular(12.0)),
               color: selectionColor,
             ),
             child: Padding(

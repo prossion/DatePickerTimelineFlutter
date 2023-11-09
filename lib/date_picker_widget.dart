@@ -168,40 +168,43 @@ class _DatePickerState extends State<DatePicker> {
               : false;
 
           // Return the Date Widget
-          return DateWidget(
-            isSelected: isSelected,
-            date: date,
-            monthTextStyle: isDeactivated
-                ? deactivatedMonthStyle
-                : isSelected
-                    ? selectedMonthStyle
-                    : widget.monthTextStyle,
-            dateTextStyle: isDeactivated
-                ? deactivatedDateStyle
-                : isSelected
-                    ? selectedDateStyle
-                    : widget.dateTextStyle,
-            dayTextStyle: isDeactivated
-                ? deactivatedDayStyle
-                : isSelected
-                    ? selectedDayStyle
-                    : widget.dayTextStyle,
-            width: widget.width,
-            locale: widget.locale,
-            selectionColor: isSelected
-                ? widget.selectionColor
-                : Color.fromRGBO(187, 242, 70, 1),
-            onDateSelected: (selectedDate) {
-              // Don't notify listener if date is deactivated
-              if (isDeactivated) return;
+          return Padding(
+            padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+            child: DateWidget(
+              isSelected: isSelected,
+              date: date,
+              monthTextStyle: isDeactivated
+                  ? deactivatedMonthStyle
+                  : isSelected
+                      ? selectedMonthStyle
+                      : widget.monthTextStyle,
+              dateTextStyle: isDeactivated
+                  ? deactivatedDateStyle
+                  : isSelected
+                      ? selectedDateStyle
+                      : widget.dateTextStyle,
+              dayTextStyle: isDeactivated
+                  ? deactivatedDayStyle
+                  : isSelected
+                      ? selectedDayStyle
+                      : widget.dayTextStyle,
+              width: widget.width,
+              locale: widget.locale,
+              selectionColor: isSelected
+                  ? widget.selectionColor
+                  : Color.fromRGBO(187, 242, 70, 1),
+              onDateSelected: (selectedDate) {
+                // Don't notify listener if date is deactivated
+                if (isDeactivated) return;
 
-              // A date is selected
-              widget.onDateChange?.call(selectedDate);
+                // A date is selected
+                widget.onDateChange?.call(selectedDate);
 
-              setState(() {
-                _currentDate = selectedDate;
-              });
-            },
+                setState(() {
+                  _currentDate = selectedDate;
+                });
+              },
+            ),
           );
         },
       ),

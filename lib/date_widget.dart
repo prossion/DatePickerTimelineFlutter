@@ -37,7 +37,8 @@ class DateWidget extends StatelessWidget {
         children: [
           Container(
             width: width,
-            margin: const EdgeInsets.all(3.0),
+            height: 45,
+            margin: const EdgeInsets.all(2.0),
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(8.0)),
               color: selectionColor,
@@ -59,10 +60,13 @@ class DateWidget extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
           if (isSelected == true)
             Container(
-              width: 20,
-              height: 20,
+              width: 6,
+              height: 6,
               decoration: BoxDecoration(
                 color: Colors.black,
                 shape: BoxShape.circle,

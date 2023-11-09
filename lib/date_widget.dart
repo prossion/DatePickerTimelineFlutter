@@ -16,6 +16,7 @@ class DateWidget extends StatelessWidget {
   final Color selectionColor;
   final DateSelectionCallback? onDateSelected;
   final String? locale;
+  final bool isSelected;
 
   DateWidget({
     required this.date,
@@ -26,33 +27,50 @@ class DateWidget extends StatelessWidget {
     this.width,
     this.onDateSelected,
     this.locale,
+    required this.isSelected,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: Container(
-        width: width,
-        margin: const EdgeInsets.all(3.0),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
-          color: selectionColor,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Text(new DateFormat("MMM", locale).format(date).toUpperCase(), // Month
-                  style: monthTextStyle),
-              Text(date.day.toString(), // Date
-                  style: dateTextStyle),
-              Text(new DateFormat("E", locale).format(date).toUpperCase(), // WeekDay
-                  style: dayTextStyle)
-            ],
+      child: Column(
+        children: [
+          Container(
+            width: width,
+            margin: const EdgeInsets.all(3.0),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(8.0)),
+              color: selectionColor,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                      new DateFormat("E", locale)
+                          .format(date)
+                          .toUpperCase(), // WeekDay
+                      style: dayTextStyle),
+                  Text(date.day.toString(), // Date
+                      style: dateTextStyle),
+                ],
+              ),
+            ),
           ),
-        ),
+          if (isSelected == true)
+            Container(
+              width: 20,
+              height: 20,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                shape: BoxShape.circle,
+              ),
+            )
+          else
+            SizedBox(),
+        ],
       ),
       onTap: () {
         onDateSelected?.call(this.date);
